@@ -1,0 +1,54 @@
+{
+    "name": "open_link_new_tab",
+    "category":" "webmaster",
+    "description": "This app modify the 'target' of all the links to '_blank', so that the linked document is opened in a new tab.",
+    "keywords" : [
+        "webmaster",
+        "link"
+        ],
+    "version": "0.0.1",
+    "contributors": [
+    {
+        "name" : "Sebastiano Armeli-Battana",
+        "email" : "seba.armeli@gmail.com"
+    }
+    ],
+        "repository" : {
+            "type" : "git",
+            "url" : "https://github.com/sebarmeli/CF-OpenLinksInNewTab.git"
+        },
+        "main" : "./public/javascripts/open_links_new_tab",
+        "dependencies" : {
+        },
+        "licenses" : [
+        {
+            "type": "MIT",
+            "url": "http://www.opensource.org/licenses/MIT"
+		}],
+        "implements" : "AMD",
+        "scripts" : {
+        },
+        "config" : {
+            "assets" : {
+                "logos" : {
+                },
+                "detail_page" : [
+                ]
+            },
+            "payment": {},
+            "details": {
+               "Category": "Webmaster Tools",
+               "Language": "English",
+               "Restrictions": "None"
+           },
+            "interface": [
+            {
+                "id": "",
+                "name": "",
+                "description": "",
+                "type": "string"
+            }
+            ]
+        }
+}
+
