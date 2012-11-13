@@ -7,7 +7,7 @@
         "webmaster",
         "link"
         ],
-    "version": "0.0.2",
+    "version": "0.0.3",
     "contributors": [
     {
         "name" : "Sebastiano Armeli-Battana",
@@ -32,6 +32,8 @@
         "config" : {
             "assets" : {
                 "logos" : {
+                    "200px": "./public/images/openlinksnewtab-200.png",
+                    "132px": "./public/images/openlinksnewtab-132.png"
                 },
                 "detail_page" : [
                 ]
