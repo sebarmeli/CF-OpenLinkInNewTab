@@ -1,36 +1,7 @@
 CloudFlare.require(
     ['cloudflare/console', 'cloudflare/dom'],
     function(console, dom) {
-        function bindEvent(domEl, event, fn, bubbling){
-
-            bubbling = bubbling || false;
-     
-            if (window.addEventListener) {
-                domEl.addEventListener(event, fn, bubbling);
-                return true;
-            } else if (domEl.attachEvent) {
-                domEl.attachEvent(event, fn, false);
-                return true;
-            } else {
-                return false;
-            }
-        };
-
-        function unbindEvent(domEl, event, fn, bubbling){
-
-            bubbling = bubbling || false;
-     
-            if (window.removeEventListener) {
-                domEl.removeEventListener(event, fn, bubbling);
-                return true;
-            } else if (domEl.detachEvent) {
-                domEl.detachEvent(event, fn, false);
-                return true;
-            } else {
-                return false;
-            }
-        };
-
+        
         function modifyLinkIfVisible(domEl){
 
             var rect =  domEl.getBoundingClientRect();
@@ -73,14 +44,14 @@ CloudFlare.require(
             }
 
             if (openLinksNewTab.anchors.length === 0){
-                unbindEvent(window, "scroll", openLinksNewTab._modifyTarget);
-                unbindEvent(window, "resize", openLinksNewTab._modifyTarget);
+                dom.removeEventListener(window, "scroll", openLinksNewTab._modifyTarget);
+                dom.removeEventListener(window, "resize", openLinksNewTab._modifyTarget);
             }
         };
 
         OpenLinksNewTab.prototype.setup = function() {
-            this.anchors = this.stack = [];
             var anchorsCol = document.getElementsByTagName("a");
+            this.anchors = dom.nodeListToArray(anchorsCol);
 
             for (var i = 0, len = anchorsCol.length; i < len; i++) {
                this.anchors.push(anchorsCol[i]); 
@@ -90,8 +61,8 @@ CloudFlare.require(
 
             this._modifyTarget(this.anchors);
 
-            bindEvent(window, "scroll", this._modifyTarget);
-            bindEvent(window, "resize", this._modifyTarget);
+            dom.addEventListener(window, "scroll", this._modifyTarget);
+            dom.addEventListener(window, "resize", this._modifyTarget);
 
         };
         
