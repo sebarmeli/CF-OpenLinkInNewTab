@@ -1,6 +1,7 @@
 {
     "main" : "./public/javascripts/open_links_new_tab.js",
     "name": "open_link_new_tab",
+    "category": "webmaster",
     "description": "This app modify the 'target' of all the links to '_blank', so that the linked document is opened in a new tab.",
     "keywords" : [
         "webmaster",
@@ -40,15 +41,7 @@
                "Category": "Webmaster Tools",
                "Language": "English",
                "Restrictions": "None"
-           },
-            "interface": [
-            {
-                "id": "",
-                "name": "",
-                "description": "",
-                "type": "string"
-            }
-            ]
+           }
         }
 }
 
