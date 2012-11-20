@@ -1,9 +1,9 @@
 {
     "main" : "./public/javascripts/open_links_new_tab.js",
-    "name": "open_link_new_tab",
+    "name": "Open links in a new tab for a whole session",
     "category": "webmaster",
-    "description": "This app modify the 'target' of all the links to '_blank', so that the linked document is opened in a new tab.",
-    "version": "0.0.4",
+    "description": "This app considers all the visible anchors. The app asks the user if it wants to open the linked document in a new tab and it saves the user's choice for the whole session. If the anchor has the '_blank' value for the 'target' attribute, the linked document will always open in a new tab.",
+    "version": "0.0.5",
     "contributors": [
     {
         "name" : "Sebastiano Armeli-Battana",
@@ -12,16 +12,16 @@
     ],
         "repository" : {
             "type" : "git",
-            "url" : "https://github.com/sebarmeli/CF-OpenLinksInNewTab.git"
+            "url" : "https://github.com/sebarmeli/CF-OpenLinkInNewTab"
         },
-        "main" : "./public/javascripts/open_links_new_tab",
+        "main" : "./public/javascripts/open_links_new_tab.js",
         "dependencies" : {
         },
         "licenses" : [
         {
             "type": "MIT",
             "url": "http://www.opensource.org/licenses/MIT"
-		}],
+        }],
         "implements" : "AMD",
         "scripts" : {
         },
@@ -42,4 +42,3 @@
            }
         }
 }
-
