@@ -32,6 +32,7 @@
                     "132px": "./public/images/openlinksnewtab-132.png"
                 },
                 "detail_page" : [
+                    "/.public/images/screenshot_open_links.png"
                 ]
             },
             "payment": {},
