@@ -20,12 +20,13 @@ CloudFlare.require(
         };
 
         /*
-        * Creates the HTML and style for the top nav. Handlers are attached if you want to be redirected to a 
-        * new tab or if you want to close the top bar.
+        * Creates the HTML and style for the top nav. Clicking on 'here' opens up a new tab for the linked document, whereas 
+        * clicking on the 'X' opens the document in the current tab.
         *
         * @param targetEl - anchor clicked
         */
         function createTopBar(targetEl){
+
             // Style
             var rules = "#cloudflare-openlinksnewtab{background:#ccc; width:100%; position:absolute; z-index:10000;height:30px; top:0; left:0; overflow:hidden; padding:8px 0px; font-size:18px/26px Arial; text-align:center;color:#000}";
             rules += "#cloudflare-openlinksnewtab a {text-decoration:underline;color:#000;}";
@@ -68,6 +69,7 @@ CloudFlare.require(
 
             // Event handlers
             dom.addEventListener(redirectButton, "click", function(){
+                // Save the user's choice in the sessionStorage (IE8+ and modern browsers)
                 if (window.sessionStorage) {
                     window.sessionStorage.setItem("cf-" + dom.getData(targetEl, "cfid"), "_blank");
                 }
@@ -76,6 +78,7 @@ CloudFlare.require(
             });
 
             dom.addEventListener(closeButton, "click", function(){
+                // Save the user's choice in the sessionStorage (IE8+ and modern browsers)
                 if (window.sessionStorage) {
                     window.sessionStorage.setItem("cf-" + dom.getData(targetEl, "cfid"), targetEl.target);
                 }
@@ -85,7 +88,8 @@ CloudFlare.require(
         }
 
         /*
-        * Event handler triggered clicking on an anchor
+        * Event handler fired when the user clicks on an anchor. Checks if the user has already clicked on the anchor
+        * during the current session. If it's the case, it uses the previous user's choice.
         *
         * @param e - event
         */
@@ -97,7 +101,7 @@ CloudFlare.require(
                 return false;
             }
 
-            // Checks if the anchor is already been saved in the sessionStorage
+            // Checks if the user's choice for the current anchor is already been saved in the sessionStorage
             if (window.sessionStorage) {
                 var sess_target = window.sessionStorage.getItem("cf-" + dom.getData(targetEl, "cfid"));
 
@@ -114,8 +118,8 @@ CloudFlare.require(
         };
 
         /*
-        * Checks whether the anchor is in the visible area. If it is,  "data" attribute is set and the 
-        * showBar function is attached to the "click" event.
+        * Checks whether the anchor is in the visible area. If it is,  the "data" attribute is set and the 
+        * showTopBar function is attached to the "click" event for the anchor.
         *
         * @param domEl - anchor
         */
@@ -142,8 +146,9 @@ CloudFlare.require(
         };
 
         /*
-        *  Constructor function defining initial index for the anchors. Index is 
+        * Constructor function defining initial index for the anchors. Index is 
         * going to be used as key stored in the sessionStorage. 
+        *
         */
         function OpenLinksNewTab() {
             this.index = 0;
@@ -166,9 +171,8 @@ CloudFlare.require(
         };
 
         /*
-        * Looks for anchors in the page and associates the window's scroll' and 'resize' event to the 'parseLinks' fn.
-        * The 'DOMNodeInserted' method is also handled for modern browsers and IE9+. This event looks for DOM elements added
-        * dynamically.
+        * Considers the anchors in a page and associates the window's scroll' and 'resize' event to the 'parseLinks' fn.
+        * Anchors added on-the-fly are considered (if the 'DOMNodeInserted' event is supported - IE9+ and modern browsers).
         *
         */
         OpenLinksNewTab.prototype.setup = function() {
